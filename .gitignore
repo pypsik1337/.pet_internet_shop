@@ -10,5 +10,5 @@ __pycache__/
 
 
 #django stuff
-db.sqlire3
+db.sqlite3
 media/
