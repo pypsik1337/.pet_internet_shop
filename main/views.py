@@ -1,24 +1,23 @@
-from unicodedata import category
-
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from goods.models import Categories
 
+# Функция для отображения главной страницы
 def index(request):
     
+
     
-    categories = Categories.objects.all()
-    
+    # передаем в контекст. Для меню 
     context = {
         'title' : 'Home - Главная',
         'content' : 'Магазин мебели HOME',
-        'categories' : categories
+
 
     }
     return render(request, 'main/index.html', context)
 
 
+# Функция для отображения страницы about
 def about(request):
     context = {
         'title' : 'Home - О нас',

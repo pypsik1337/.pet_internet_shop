@@ -15,22 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from argparse import Namespace
-from os import name
-from tkinter.font import names
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
 
-from app.settings import DEBUG
-import goods
+# Импорт для использования debug режима
+from app.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 
+
+# Путь для каждой страницы сайта
 urlpatterns = [
+    
+    # Стандартный путь, в админскую панель
     path("admin/", admin.site.urls),
+    
+    # Путь на главную страницу. include используется так как есть другой urlconfig в main
     path("", include("main.urls", namespace="main")),
+    
+    # Путь на страницу каталога. include используется так как есть другой urlconfig в goods
     path("catalog/", include("goods.urls", namespace="catalog")),
 ]
 
-
+# Проверка, что debug режим включен 
 if DEBUG:
+    
+    # Добавляется в список выше, путь для bebug_toolbar
     urlpatterns += [path("__debug__/", include("debug_toolbar.urls"))]
+    
+    
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
