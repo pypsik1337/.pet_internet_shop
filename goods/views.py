@@ -7,7 +7,9 @@ from goods.models import Products
 
 # Контроллер для отображения карточек с товарами на странице каталога, возвращает страницу goods.html и context
 # В goods.html из словаря context переберается циклом значения и отоборажаются
-def catalog(request, category_slug, page=1):
+def catalog(request, category_slug):
+    
+    page = request.GET.get('page', 1)
     
     # Получаем все данные из бд таблица Products, если у нас все категории
     if category_slug == 'vse-tovary':
@@ -18,7 +20,7 @@ def catalog(request, category_slug, page=1):
         goods = get_list_or_404(Products.objects.filter(category__slug = category_slug))
     
     paginator = Paginator(goods, 3)
-    current_page = paginator.page(page)
+    current_page = paginator.page(int(page))
     
     context = {
         "title": "Home - Каталог",
