@@ -31,6 +31,7 @@ class Products(models.Model):
     # Класс для изменения наименования внутри админской панели
     class Meta:
         db_table = "product"
+        ordering = ("id", )
 
 
     def __str__(self):
