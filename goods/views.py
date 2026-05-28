@@ -10,6 +10,11 @@ from goods.models import Products
 def catalog(request, category_slug):
     
     page = request.GET.get('page', 1)
+    on_sale = request.GET.get('on_sale', None)
+    order_by = request.GET.get('order_by', None)
+    
+    
+    
     
     # Получаем все данные из бд таблица Products, если у нас все категории
     if category_slug == 'vse-tovary':
@@ -18,6 +23,12 @@ def catalog(request, category_slug):
     
         # Получаем все товары по fk category который из category_slug(kyhnya все их кухни)
         goods = get_list_or_404(Products.objects.filter(category__slug = category_slug))
+    
+    if on_sale:
+        goods = goods.filter(discount__gt=0)
+        
+    if order_by and order_by != 'default':
+        goods = goods.order_by(order_by)
     
     paginator = Paginator(goods, 3)
     current_page = paginator.page(int(page))
