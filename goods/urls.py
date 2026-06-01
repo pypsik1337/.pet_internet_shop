@@ -7,6 +7,9 @@ app_name = 'goods'
 # url для приложения goods
 urlpatterns = [
     
+    # Поиск на странице
+    path('search/', views.catalog, name='search'),
+    
     # Страница каталога
     path('<slug:category_slug>/', views.catalog, name='index'),
     

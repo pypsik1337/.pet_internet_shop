@@ -31,6 +31,8 @@ class Products(models.Model):
     # Класс для изменения наименования внутри админской панели
     class Meta:
         db_table = "product"
+        
+        # Сразу сортировка по полю id
         ordering = ("id", )
 
 
