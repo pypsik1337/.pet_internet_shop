@@ -35,6 +35,11 @@ urlpatterns = [
     
     # Путь на страницу каталога. include используется так как есть другой urlconfig в goods
     path("catalog/", include("goods.urls", namespace="catalog")),
+    
+    # Путь на страницу пользователя. include используется так как есть другой urlconfig в users
+    path("user/", include("users.urls", namespace="user")),
+    
+    
 ]
 
 # Проверка, что debug режим включен 
