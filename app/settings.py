@@ -153,8 +153,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Переопределение модели user для базы данных
-AUTH_USER_MODEL = 'users.User'
 
 
 # Нужнен для работы debug_toolbar взято из документации
@@ -163,3 +161,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# Переопределение модели user для базы данных
+AUTH_USER_MODEL = "users.User"
